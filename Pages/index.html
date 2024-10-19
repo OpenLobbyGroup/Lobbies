@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Pages/favicon.ico" type="image/x-icon">
+    <title>POST Request Example</title>
+</head>
+<body>
+    <button id="submit-button">Send POST Request</button>
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function() {
+            // Define the data to send
+            const data = {
+                name: "Lobby Name",
+                description: "This is a description",
+                // Add other fields as necessary
+            };
+
+            // Send POST request
+            fetch('http://localhost:8080/OpenLobby/Add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // or response.text() if no JSON expected
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

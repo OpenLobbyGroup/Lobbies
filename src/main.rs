@@ -1,43 +1,99 @@
-use std::io::{Read, Write};
-use std::{fs, net::{SocketAddr, TcpListener, TcpStream}};
-use std:: thread;
+use std::fs;
+use std::collections::HashSet;
+use std::sync::{Arc, Mutex};
+use actix_files::Files;
+use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use models::{AllowedRegions, Game, Lobby, Settings, Status, UTC};
+mod models;
 
-fn main() 
+#[derive(Clone)]
+struct AppState 
 {
-    let addr  = "0.0.0.0:6969";
-    let listener : TcpListener = TcpListener::bind(addr).unwrap();
-    loop 
-    {
-        accept_clients(&listener);
-    }
+    lobbies: Arc<Mutex<HashSet<Lobby>>>,
 }
 
-fn accept_clients(listener : &TcpListener)
+#[get("/Total")]
+async fn total(app_state: web::Data<AppState>) -> impl Responder 
 {
-    match listener.accept()
-    {
-        Ok((stream, addr)) => 
+    HttpResponse::Ok().json(app_state.lobbies.lock().unwrap().len())
+    // Add: args of search parameter
+    // Add: query DB with args and return the result
+}
+
+#[get("/View")]
+async fn view() -> impl Responder 
+{
+    let page = fs::read("./Pages/index.html").unwrap();
+    HttpResponse::Ok().body(page)
+}
+
+#[post("/Add")]
+async fn add(app_state: web::Data<AppState>) -> impl Responder
+{
+    app_state.lobbies.lock().unwrap().insert
+    (
+        Lobby
         {
-            thread::spawn(move || on_connected(stream, addr));
-        },
-        Err(e) => println!("Couldn't accept a client due to error {}", e)
-    };
+            game: Game
+            {
+                name: String::from("Minecraft"),
+                description: String::from("Mine, Craft, Build"),
+                banner: String::from("./TestImage"),
+                icon: String::from("./TestImage")
+            },
+            settings: Settings
+            {
+                address: 0,
+                port: 0,
+                password: bcrypt::hash("TestPassword", 10).unwrap(),
+                join_retries: 3,
+                hidden: false,
+                max_players: 10,
+                start_time: UTC::new(String::from("5:00")),
+                end_time: UTC::new(String::from("10:00")),
+                regions: AllowedRegions
+                {
+                    north_america: true, europe: true, south_america: false, australia: false, africa: false, asia: false
+                },
+                max_ping: 100,
+                idle_timeout: 15
+            },
+            status: Status
+            { 
+                player_count: 0,
+                last_contact: UTC::new(String::from("0:0")),
+                rating: 0
+            },
+            token: 12345678
+        }
+    );
+
+    HttpResponse::Ok()
 }
 
-fn on_connected(mut stream : TcpStream, _addr : SocketAddr)
+#[actix_web::main]
+async fn main() -> std::io::Result<()> 
 {
-    let mut buf = [0; 1024];
-    stream.read(&mut buf).unwrap();
-    println!("Received html:\n{:}", String::from_utf8_lossy(&buf));
+    let lobbies = Arc::new(Mutex::new(HashSet::new()));
+    HttpServer::new
+    (
+        move || 
+        {
+            let ad = AppState{ lobbies: Arc::clone(&lobbies) };
 
-    let status_line = "HTTP/1.1 200 OK";
-    let contents = fs::read_to_string("Pages/page.html").unwrap();
-    let length = contents.len();
-    
-    let response =
-    format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
-    
-    let count = stream.write(response.as_bytes()).unwrap();
-    println!("Sent back html in {count} bytes");
-    stream.shutdown(std::net::Shutdown::Both).unwrap();
-}
+            App::new()
+            .app_data(web::Data::new(ad))
+            .service
+            (
+                web::scope("/OpenLobby")
+                .service(total)
+                .service(add)
+                .service(view)
+                .service(Files::new("/Pages", "Pages")) 
+            )
+        }
+    )
+    .bind("0.0.0.0:8080")?
+    .run()
+    .await
+}   
