@@ -1,0 +1,15 @@
+@import url("../util/base.css");
+
+#btn-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#btn-area > button {
+    max-width: 10ch;
+}
+
+#btn-area > output {
+    max-width: 50vw;
+}

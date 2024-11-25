@@ -1,0 +1,77 @@
+@import url(../util/base.css);
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+#sidebar {
+    position: sticky;
+    top: 0;
+    width: 150vw;
+    align-self: start;
+
+    padding: 1rem;
+}
+
+#filter {
+    background-color: var(--c-secondary-background);
+    background-repeat: no-repeat;
+
+    padding: 1rem;
+    height: 60vh;
+
+    line-height: 2rem;
+}
+
+#filter>label {
+    font-size: large;
+    font-weight: bold;
+}
+
+#user {
+    background-image: url(user.svg);
+    background-color: var(--c-secondary-background);
+    background-repeat: no-repeat;
+    height: 2rem;
+    width: 2rem;
+}
+
+#query {
+    background-image: url(query.svg);
+    background-repeat: no-repeat;
+    background-color: var(--c-secondary-background);
+
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+/* list */
+#list {
+    display: flex;
+    flex-direction: column;
+
+    margin: 1rem;
+    padding: 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    
+    margin: 1rem;
+    padding: 1rem;
+
+    border-radius: 6px;
+    cursor: auto;
+}
+
+.card-toolbar {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.card-toolbar>* {
+    height: 3rem;
+    width: 3rem;
+}

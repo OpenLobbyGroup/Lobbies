@@ -1,0 +1,11 @@
+@import url("../util/base.css");
+
+#submit-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#submit-area>button {
+    max-width: 10ch;
+}

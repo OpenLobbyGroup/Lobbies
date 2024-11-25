@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../util/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="login.css">
+    <title>Log In</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <h1>Welcome Back</h1>
+
+    <div>
+        <label for="user">User Name</label><br>
+        <input autocomplete="username" type="text" name="user" id="user">
+        <output></output>
+    </div>
+
+    <div>
+        <label for="password">Enter Password</label><br>
+        <input autocomplete="new-password" type="password" name="password" id="password">
+        <output></output>
+    </div>
+
+    <div id="submit-area">
+        <div>
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Allow Cookies</label>
+        </div>
+        <button onclick="login(user, password, nextElementSibling)">Log In</button>
+        <output></output>
+    </div>
+    <div>
+        <a href="../signup">Not Registered Yet?</a>
+    </div>
+
+    <script type="module" src="login.js"></script>
+</body>
+
+</html>

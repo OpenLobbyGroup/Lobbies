@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../util/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="signup.css">
+
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <h1>Welcome New User</h1>
+    <div>
+        <label for="user">User Name</label><br>
+        <input autocomplete="username" type="text" name="user" id="user">
+        <output></output>
+    </div>
+
+    <div>
+        <label for="password">Enter Password</label><br>
+        <input autocomplete="new-password" type="password" name="password" id="password">
+        <output></output>
+    </div>
+
+    <div id="btn-area">
+        <div>
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Allow Cookies</label>
+        </div>
+        <button onclick="signup(user, password, nextElementSibling)">Sign Up</button>
+        <output></output>
+    </div>
+    <a href="../login">Already Registered?</a>
+</body>
+
+<script type="module" src="signup.js"></script>
+
+</html>

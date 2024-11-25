@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../util/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="search.css">
+
+    <title>Lobby Search</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        <h1>Search for a Lobby</h1>
+        <div id="toolbar">
+            <button id="user" hidden></button>
+            <select name="tooldrop" id="tooldrop">
+                <option value="owned">Public</option>
+                <option value="liked">Liked</option>
+                <option value="owned">Owned</option>
+            </select>
+            <input type="text" name="search" id="search">
+            <button id="query"></button>
+        </div>
+        <div id="filter">
+
+            <label for="player-count">Lobby Capacity: </label>
+            <div id="player-count">
+                <input type="radio" name="player-count" id="empty">
+                <label for="empty">Empty</label>
+                <input type="radio" name="player-count" id="open" checked>
+                <label for="open">Open</label>
+                <input type="radio" name="player-count" id="full">
+                <label for="full">Full</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="list">
+    </div>
+</body>
+<script type="module" src="search.js"></script>
+
+</html>

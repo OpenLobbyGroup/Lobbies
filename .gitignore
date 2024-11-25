@@ -1,1 +1,50 @@
-/target
+# Rust build output
+/target/
+
+# Cargo lock file for binaries
+Cargo.lock
+
+# Rust language server configuration
+/.cargo/
+
+# IDE and editor settings
+.idea/
+*.iml
+*.swp
+*.swo
+*.swn
+
+# Visual Studio Code settings
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+*.rs.bk
+*.rs.swp
+*.rs.swo
+
+# Rust generated files
+*.rs.bk
+*.rs.swp
+*.rs.swo
+
+# Environment files
+.env
+
+# Logs
+*.log
+
+# Backup files
+*~ 
+*.bak
+*.tmp
+
+# Other generated files
+*.dSYM/
+*.pdb
+*.so
+*.dll
+*.exe
+*.pem
+*.pfx
+*.db

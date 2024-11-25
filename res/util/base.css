@@ -1,0 +1,93 @@
+:root {
+    --ff-ms: monospace;
+
+    --c-background: #202020;
+    --c-secondary-background: #0e1318;
+    --c-primary-text: #7597a3;
+    --c-accent: #00BFFF;
+    --c-hover: #009B9F;
+    --c-secondary-text: #adcdf7;
+    --c-border: #1d414e;
+    --c-highlight: #920000;
+    --bor-1: 0.25rem solid var(--c-border);
+}
+
+html {
+    color-scheme: dark;
+    font-family: var(--ff-ms);
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(to top, rgb(1, 32, 1) 40%, rgba(46, 59, 95, 0.185) 45%);
+    background-attachment: fixed;
+
+    color: var(--c-primary-text);
+}
+
+
+button,
+option,
+select,
+.card,
+.tab,
+a,
+textarea,
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"] {
+    font-family: var(--ff-ms);
+
+    color: var(--c-primary-text);
+    background-color: var(--c-secondary-background);
+    border: var(--bor-1);
+    border-radius: 3px;
+
+    cursor: pointer;
+
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+button:hover,
+select:hover,
+textarea:hover,
+a:hover,
+.card:hover,
+.tab:hover,
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover {
+    border-color: var(--c-hover);
+    color: var(--c-secondary-text);
+}
+
+input:focus,
+select:focus,
+a:focus,
+textarea:focus,
+.checked,
+/*div:hover,*/
+button:focus-visible,
+button:active {
+    outline: none;
+    box-shadow: 0 0 5px var(--c-accent);
+}
+
+::selection {
+    color: var(--c-highlight);
+}
+
+output {
+    color: var(--c-highlight);
+    max-width: 40ch;
+}

@@ -1,0 +1,28 @@
+@import url("../util/base.css");
+
+#tabs {
+    padding: 1rem;
+}
+
+.tab {
+    cursor: pointer;
+    
+    background-color: var(--c-secondary-background);
+    border: var(--bor-1);
+    padding-inline: 1rem;
+
+    font-size: x-large;
+}
+
+#lobby-tab, #server-tab {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem;
+}
+
+#lobby-tab > *, #server-tab > * {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    gap: 0.25rem;
+}

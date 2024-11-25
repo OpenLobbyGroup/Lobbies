@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../util/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="create.css">
+    <title>New Lobby</title>
+</head>
+
+<body>
+    <h1>Your Lobby</h1>
+    <div id="tabs">
+        <a class="tab" id="lobby-selector">Lobby</a>
+        <a class="tab" id="server-selector">Server</a>
+    </div>
+    <button id="submit">Submit</button>
+    <output id="submit-output"></output>
+    <div id="lobby-tab">
+        <div id="game">
+            <label for="game-name">Game Name</label>
+            <input type="text" id="game-name" name="game-name" placeholder="Ex. Minecraft">
+            <output></output>
+        </div>
+        <div id="lobby">
+            <label for="lobby-name">Lobby Name</label>
+            <input type="text" id="lobby-name" name="lobby-name" placeholder="Ex. New Lobby">
+            <output></output>
+
+            <label for="short-desc">Short Description</label>
+            <textarea id="short-desc" name="short-desc" placeholder="Enter a description of the lobby"></textarea>
+            <output></output>
+
+            <label for="long-desc">Long Description</label>
+            <textarea id="long-desc" name="long-desc" placeholder="optional"></textarea>
+            <output></output>
+        </div>
+    </div>
+    <div id="server-tab">
+        <div id="ip">
+            <label for="address">IP Address</label>
+            <input type="text" name="address" id="address">
+            <output></output>
+
+            <label for="port">Port</label>
+            <input type="number" name="port" id="port">
+            <output></output>
+        </div>
+        <div id="access">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <output></output>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</body>
+<script type="module" src="create.js"></script>
+
+</html>
